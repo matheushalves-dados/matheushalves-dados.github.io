@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matheus Alves | Analista de Dados e Analytics Engineer</title>
+<meta name="description" content="Analista de Dados Pleno na Ancar. Analytics engineering com SQL, dbt, BigQuery, Databricks e Power BI: cases com painéis interativos e resultados medidos.">
+<link rel="canonical" href="https://matheushalves-dados.github.io/">
+<meta name="theme-color" content="#0A0A0B">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Matheus Alves">
+<meta property="og:title" content="Matheus Alves | Analista de Dados e Analytics Engineer">
+<meta property="og:description" content="Analytics engineering com SQL, dbt, BigQuery, Databricks e Power BI. Cases com painéis interativos e resultados medidos.">
+<meta property="og:url" content="https://matheushalves-dados.github.io/">
+<meta property="og:image" content="https://matheushalves-dados.github.io/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Matheus Alves, Analista de Dados Pleno e Analytics Engineer">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%236A2CF5'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='27' font-weight='700' fill='%23fff' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Matheus Alves","jobTitle":"Analista de Dados Pleno","worksFor":{"@type":"Organization","name":"Ancar"},"alumniOf":{"@type":"CollegeOrUniversity","name":"CEFET-MG"},"address":{"@type":"PostalAddress","addressLocality":"Rio de Janeiro","addressRegion":"RJ","addressCountry":"BR"},"email":"mailto:matheus.alves.dados@gmail.com","url":"https://matheushalves-dados.github.io/","sameAs":["https://www.linkedin.com/in/matheushalves/","https://github.com/matheushalves-dados"],"knowsAbout":["Analytics Engineering","SQL","dbt","BigQuery","Databricks","Google Cloud","Power BI","Python","Google Analytics 4"]}
+</script>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header dark">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">MA</span>Matheus Alves<span class="brand-role">Analytics Engineer</span></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#cases">Cases</a>
+      <a class="opt" href="#trajetoria">Trajetória</a>
+      <a class="opt" href="#competencias">Competências</a>
+      <a class="opt" href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn-ghost header-cta" href="cv.html">Currículo</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<section class="hero dark" aria-labelledby="hero-t">
+  <div class="wrap">
+    <div class="hero-top">
+      <span><strong>Matheus Alves</strong> · Analista de Dados Pleno na Ancar</span>
+      <span class="status">Aberto a oportunidades</span>
+    </div>
+    <h1 id="hero-t">Menos horas montando relatório. <span class="hl">Mais tempo para decidir.</span></h1>
+    <div class="hero-body">
+      <div>
+        <p class="lede">Construo pipelines, modelos e painéis que levam o dado bruto até quem decide. Em quatro anos passei por iDinheiro e Accenture. Hoje lidero a migração da plataforma de dados da Ancar para <strong>GCP, dbt e Databricks</strong>.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#cases">Ver os cases <svg class="arr" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+          <a class="btn btn-ghost" href="cv.html"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 1.5h6l3 3v10h-9zM9.5 1.5v3h3M6 8.5h4M6 11h4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Currículo</a>
+        </div>
+        <dl class="hero-meta">
+          <div><dt>Base</dt><dd>Rio de Janeiro</dd></div>
+          <div><dt>Formato</dt><dd>Presencial ou remoto</dd></div>
+          <div><dt>Idiomas</dt><dd>Português e inglês</dd></div>
+        </dl>
+      </div>
+      <aside class="panel" aria-label="Prévia interativa do painel de shopping centers">
+        <div class="panel-head">
+          <div><p class="panel-title">Vendas dos lojistas</p><p class="panel-sub">Prévia do painel de shopping centers · dados sintéticos</p></div>
+          <div class="seg" id="hero-seg" role="group" aria-label="Escolher shopping">
+            <button type="button" data-id="atlantico" aria-pressed="true">Atlântico</button>
+            <button type="button" data-id="serra" aria-pressed="false">Serra</button>
+            <button type="button" data-id="lagoa" aria-pressed="false">Lagoa</button>
+          </div>
+        </div>
+        <div class="panel-kpis">
+          <div><b id="hero-sales">–</b><span>Vendas em 12 meses</span></div>
+          <div><b id="hero-delta">–</b><span>vs 12 meses anteriores</span></div>
+          <div><b id="hero-occ">–</b><span>Ocupação</span></div>
+        </div>
+        <div id="hero-chart"></div>
+        <div class="panel-foot"><span>No trabalho, construo esse painel em Power BI</span><a href="projetos/shopping-performance.html">Abrir o painel completo</a></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="scorecard dark" aria-labelledby="sc-t">
+  <div class="wrap">
+    <div class="sc-head"><h2 class="eyebrow" id="sc-t">Resultados entregues</h2><p>Números reais, de projetos em que trabalhei.</p></div>
+    <ol class="sc-grid">
+      <li class="sc">
+        <span class="sc-src">Accenture</span>
+        <span class="sc-val">5h<span class="to">→</span>30min</span>
+        <p class="sc-desc">para analisar os relatórios dos clientes, com painéis em Power BI e coleta de dados automatizada em Python.</p>
+        <div class="sc-viz" aria-hidden="true">
+          <span class="sc-bar"><span>antes</span><i style="--w:100%"></i></span>
+          <span class="sc-bar after"><span>depois</span><i style="--w:10%"></i></span>
+        </div>
+        <p class="sc-foot">−90% de tempo</p>
+      </li>
+      <li class="sc">
+        <span class="sc-src">iDinheiro</span>
+        <span class="sc-val">2h<span class="to">→</span>30min</span>
+        <p class="sc-desc">no processamento diário de relatórios, com transformações em dbt e SQL no BigQuery.</p>
+        <div class="sc-viz" aria-hidden="true">
+          <span class="sc-bar"><span>antes</span><i style="--w:40%"></i></span>
+          <span class="sc-bar after"><span>depois</span><i style="--w:10%"></i></span>
+        </div>
+        <p class="sc-foot">−75% de tempo · mesma escala</p>
+      </li>
+      <li class="sc">
+        <span class="sc-src">Ancar · em andamento</span>
+        <span class="sc-val">R$ 500 mil</span>
+        <p class="sc-desc">é a meta de economia para o próximo ano na frente de otimização da plataforma de dados que eu conduzo.</p>
+        <p class="sc-foot plain">Meta · cerca de R$ 500 mil em um ano</p>
+      </li>
+      <li class="sc">
+        <span class="sc-src">Accenture</span>
+        <span class="sc-val">14 meses</span>
+        <p class="sc-desc">de estagiário a analista de dados pleno, pela entrega e pela responsabilidade assumida nos projetos.</p>
+        <p class="sc-foot plain">Estágio → Analista Pleno</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="cases" aria-labelledby="cases-t">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Cases</p><h2 id="cases-t">Do problema de negócio ao painel.</h2></div>
+      <p>Cada case traz o contexto, as decisões técnicas, o código e um painel que você pode usar. Os números são sintéticos; a abordagem é a mesma que uso no trabalho.</p>
+    </div>
+    <ol class="cases">
+      <li class="case">
+        <span class="case-n">01</span>
+        <div class="case-main">
+          <p class="case-kicker">Varejo · Shopping centers</p>
+          <h3><a href="projetos/shopping-performance.html">Painel de performance para uma rede de shopping centers</a></h3>
+          <p>Vendas, venda por m², ocupação, inadimplência e uma lista de lojistas em risco, para a diretoria agir antes que a queda vire vacância.</p>
+          <dl class="case-facts">
+            <dt>Pergunta</dt><dd>Quais lojistas precisam de atenção agora?</dd>
+            <dt>Stack</dt><dd>Power BI, dbt, BigQuery, SQL</dd>
+            <dt>Papel</dt><dd>Análise, modelagem e visualização</dd>
+          </dl>
+          <span class="case-cta">Abrir o case e o painel <svg class="arr" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+        <div class="case-visual">
+          <p class="case-visual-cap">Variação de vendas por segmento</p>
+          <div id="case1-chart"></div>
+        </div>
+      </li>
+      <li class="case">
+        <span class="case-n">02</span>
+        <div class="case-main">
+          <p class="case-kicker">Produto digital · Conteúdo financeiro</p>
+          <h3><a href="projetos/funil-conversao.html">Onde um portal de conteúdo financeiro perde seus cadastros</a></h3>
+          <p>Funil do primeiro acesso ao cadastro no parceiro, com recorte por canal e dispositivo, mostrando qual etapa vale a pena atacar primeiro.</p>
+          <dl class="case-facts">
+            <dt>Pergunta</dt><dd>Qual etapa do funil atacar primeiro?</dd>
+            <dt>Stack</dt><dd>GA4, BigQuery, dbt, Looker Studio</dd>
+            <dt>Papel</dt><dd>Instrumentação, modelagem e análise</dd>
+          </dl>
+          <span class="case-cta">Abrir o case e o painel <svg class="arr" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+        <div class="case-visual">
+          <p class="case-visual-cap">Funil, em % das sessões</p>
+          <div class="mini-funnel">
+            <div class="mf-row"><span>Sessões</span><i style="--w:100%"></i><b>100%</b></div>
+            <div class="mf-row"><span>Leram o conteúdo</span><i style="--w:52%"></i><b>52%</b></div>
+            <div class="mf-row"><span>Clicaram no comparador</span><i style="--w:12%"></i><b>12%</b></div>
+            <div class="mf-row worst"><span>Iniciaram cadastro</span><i style="--w:4%"></i><b>4%</b></div>
+            <div class="mf-row"><span>Concluíram</span><i style="--w:1.5%"></i><b>1,5%</b></div>
+          </div>
+          <p class="mf-note">Em vermelho, a etapa que mais vale atacar.</p>
+        </div>
+      </li>
+      <li class="case">
+        <span class="case-n">03</span>
+        <div class="case-main">
+          <p class="case-kicker">Engenharia de dados · Em andamento</p>
+          <h3><a href="projetos/migracao-dados.html">Modernizando uma plataforma de dados sem parar a operação</a></h3>
+          <p>A migração de um ETL legado em SSIS para GCP, dbt e Databricks que lidero hoje: as decisões, o plano e como garantir que nenhum número quebre no caminho.</p>
+          <dl class="case-facts">
+            <dt>Pergunta</dt><dd>Como migrar sem quebrar nenhum número?</dd>
+            <dt>Stack</dt><dd>GCP, Databricks, dbt, Python</dd>
+            <dt>Papel</dt><dd>Liderança técnica</dd>
+          </dl>
+          <span class="case-cta">Abrir o case <svg class="arr" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+        <div class="case-visual">
+          <p class="case-visual-cap">Arquitetura, antes e depois</p>
+          <div class="mini-arch">
+            <div class="ma-row"><span class="ma-tag">Antes</span><span class="ma-node">Pacotes SSIS</span><span class="ma-node">Servidor dedicado</span><span class="ma-node">Relatórios</span></div>
+            <div class="ma-row new"><span class="ma-tag">Depois</span><span class="ma-node">Ingestão no GCP</span><span class="ma-node">Databricks + dbt</span><span class="ma-node">Power BI</span></div>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section alt" id="metodo" aria-labelledby="met-t">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Como eu trabalho</p><h2 id="met-t">O mesmo método em todo projeto.</h2></div>
+      <p>Vale para um painel novo, para uma automação ou para uma migração inteira.</p>
+    </div>
+    <ol class="flow">
+      <li><p class="flow-tag">01 · pergunta</p><h3>Entender a decisão</h3><p>Antes de abrir uma tabela, descubro quem vai decidir o quê com aquele número e o que muda se ele subir ou cair.</p></li>
+      <li><p class="flow-tag">02 · modelo</p><h3>Modelar uma vez só</h3><p>Indicadores calculados na camada de dados, em dbt, com uma definição única. Painel, planilha e API mostram o mesmo número.</p></li>
+      <li><p class="flow-tag">03 · teste</p><h3>Testar antes de publicar</h3><p>Chave duplicada, valor fora do esperado, carga atrasada: os testes barram o erro antes que ele chegue à reunião.</p></li>
+      <li><p class="flow-tag">04 · impacto</p><h3>Medir o ganho</h3><p>Horas economizadas, custo reduzido, decisão antecipada. Se o ganho não aparece, volto à primeira etapa.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section dark" id="trajetoria" aria-labelledby="traj-t">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Trajetória</p><h2 id="traj-t">Da linha de produção à liderança técnica.</h2></div>
+      <p>Trabalhei oito anos em operação, na Gerdau e no varejo, antes de entrar em dados. Em 2022 virei estagiário. Desde então vieram duas promoções, a graduação em Engenharia de Computação e, em 2026, a liderança técnica de uma migração de plataforma.</p>
+    </div>
+
+    <figure class="gantt" aria-labelledby="gantt-cap">
+      <figcaption class="gantt-cap" id="gantt-cap">
+        <span>Linha do tempo, 2013 a 2026</span>
+        <span class="g-legend"><span><i class="data"></i>Dados</span><span><i class="study"></i>Formação e pesquisa</span><span><i class="ops"></i>Operação</span></span>
+      </figcaption>
+      <div class="g-chart">
+        <div class="g-axis" aria-hidden="true">
+          <span style="--x:0%">2013</span><span style="--x:14.29%">2015</span><span style="--x:28.57%">2017</span><span style="--x:42.86%">2019</span><span style="--x:57.14%">2021</span><span style="--x:71.43%">2023</span><span style="--x:85.71%">2025</span><span class="g-now" style="--x:98.81%">hoje</span>
+        </div>
+        <ol class="g-rows">
+          <li class="g-row"><div class="g-label">Gerdau e varejo<small>2013 – 2021 · operador de processo e repositor</small></div><div class="g-track" aria-hidden="true"><span class="g-bar ops" style="--s:0%;--e:64.29%"></span></div></li>
+          <li class="g-row"><div class="g-label">Engenharia de Computação<small>2021 – 2025 · CEFET-MG</small></div><div class="g-track" aria-hidden="true"><span class="g-bar study" style="--s:58.33%;--e:92.86%"></span></div></li>
+          <li class="g-row"><div class="g-label">iDinheiro<small>mar 2022 – mar 2024 · estágio → júnior</small></div><div class="g-track" aria-hidden="true"><span class="g-bar data" style="--s:65.48%;--e:80.36%"></span></div></li>
+          <li class="g-row"><div class="g-label">Iniciação científica<small>mar 2024 – fev 2025 · CEFET-MG</small></div><div class="g-track" aria-hidden="true"><span class="g-bar study" style="--s:79.76%;--e:86.9%"></span></div></li>
+          <li class="g-row"><div class="g-label">Accenture<small>out 2024 – jun 2026 · estágio → pleno</small></div><div class="g-track" aria-hidden="true"><span class="g-bar data" style="--s:83.93%;--e:96.43%"></span></div></li>
+          <li class="g-row"><div class="g-label">Ancar<small>jun 2026 – hoje · analista pleno</small></div><div class="g-track" aria-hidden="true"><span class="g-bar data" style="--s:95.83%;--e:98.81%"></span></div></li>
+        </ol>
+        <span class="g-today" style="--t:.9881" aria-hidden="true"></span>
+      </div>
+    </figure>
+
+    <ol class="roles">
+      <li class="role">
+        <div><h3 class="role-org">Ancar <span class="role-now">Atual</span></h3><p class="role-when">jun 2026 – hoje</p></div>
+        <div>
+          <p class="role-title">Analista de Dados Pleno</p>
+          <p class="role-where">Rio de Janeiro · administradora de shopping centers</p>
+          <ul>
+            <li>Lidero tecnicamente a migração do ETL em SSIS para uma arquitetura em <strong>GCP, dbt e Databricks</strong>.</li>
+            <li>Conduzo a frente de otimização da plataforma de dados, com meta de <strong>cerca de R$ 500 mil de economia</strong> no próximo ano.</li>
+            <li>Automatizo rotinas com Python, RPA e integrações entre sistemas, com meta de <strong>20% mais produtividade</strong> na área.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="role">
+        <div><h3 class="role-org">Accenture</h3><p class="role-when">out 2024 – jun 2026</p></div>
+        <div>
+          <p class="role-title">Estagiário de Dados, promovido a Analista de Dados Pleno</p>
+          <p class="role-where">Promoção em 14 meses</p>
+          <ul>
+            <li>Criei painéis em Power BI que reduziram o tempo de análise de relatórios de <strong>5 horas para 30 minutos</strong>.</li>
+            <li>Automatizei a atualização dos painéis com raspagem de dados em Python, usando Selenium e BeautifulSoup.</li>
+            <li>Conduzi reuniões semanais com clientes: <strong>100% dos prazos cumpridos</strong> e <strong>20% menos retrabalho</strong>.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="role">
+        <div><h3 class="role-org">CEFET-MG</h3><p class="role-when">mar 2024 – fev 2025</p></div>
+        <div>
+          <p class="role-title">Iniciação científica</p>
+          <ul>
+            <li>Desenvolvi em Python a extração e a análise de redes de grafos para mapear as publicações científicas de doutores brasileiros.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="role">
+        <div><h3 class="role-org">iDinheiro</h3><p class="role-when">mar 2022 – mar 2024</p></div>
+        <div>
+          <p class="role-title">Estagiário de Dados, promovido a Analista de Dados Júnior</p>
+          <ul>
+            <li>Fui responsável pela migração para o Google Analytics 4, com eventos integrados ao data warehouse no BigQuery.</li>
+            <li>Reduzi o processamento diário de relatórios de <strong>cerca de 2 horas para 30 minutos</strong> com dbt e SQL.</li>
+            <li>Construí painéis em Power BI e Looker Studio para Produto, Marketing, Vendas e Conteúdo.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="role past">
+        <div><h3 class="role-org">Antes dos dados</h3><p class="role-when">2013 – 2021</p></div>
+        <div>
+          <p class="role-title">Operador de processo na Gerdau e repositor em supermercado</p>
+          <p class="role-where">Divinópolis, MG</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="competencias" aria-labelledby="comp-t">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Competências</p><h2 id="comp-t">Ferramentas que uso no dia a dia.</h2></div>
+      <p>Agrupadas pelo tipo de problema que resolvem.</p>
+    </div>
+    <div class="skills">
+      <div class="skill">
+        <h3>Engenharia de analytics</h3>
+        <p>Levar o dado da origem a um modelo versionado, testado e documentado.</p>
+        <ul class="chips"><li>SQL</li><li>dbt</li><li>BigQuery</li><li>Databricks</li><li>GCP</li><li>AWS</li><li>SSIS</li><li>ETL e ELT</li><li>Modelagem dimensional</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Automação</h3>
+        <p>Tirar trabalho manual do caminho e manter os painéis atualizados sozinhos.</p>
+        <ul class="chips"><li>Python</li><li>Pandas</li><li>Selenium</li><li>BeautifulSoup</li><li>RPA</li><li>APIs e integrações</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Análise e BI</h3>
+        <p>Responder perguntas de negócio e entregar o resultado em um formato que se usa.</p>
+        <ul class="chips"><li>Power BI</li><li>Looker Studio</li><li>GA4</li><li>Análise de funil</li><li>KPIs e métricas</li><li>Modelos de classificação</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Negócio e entrega</h3>
+        <p>Entender a decisão antes da tabela e cumprir o prazo combinado.</p>
+        <ul class="chips"><li>Levantamento de requisitos</li><li>Storytelling com dados</li><li>Ritos com clientes</li><li>Scrum</li></ul>
+      </div>
+    </div>
+    <dl class="facts-row">
+      <div><dt>Formação</dt><dd>Engenharia de Computação, CEFET-MG (2021 – 2025)</dd></div>
+      <div><dt>Idiomas</dt><dd>Português nativo, inglês profissional</dd></div>
+      <div><dt>Base</dt><dd>Rio de Janeiro, aberto a trabalho remoto</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="contact violet" id="contato" aria-labelledby="contato-t">
+  <div class="wrap">
+    <p class="eyebrow">Contato</p>
+    <h2 id="contato-t">Vamos conversar.</h2>
+    <p class="contact-lede">Estou aberto a projetos e oportunidades no Rio de Janeiro, remotas ou internacionais. O caminho mais rápido é por e-mail ou pelo LinkedIn.</p>
+    <div class="mail-row">
+      <a class="mail" href="mailto:matheus.alves.dados@gmail.com">matheus.alves.dados@gmail.com</a>
+      <button class="btn btn-ghost copy" type="button" data-copy="matheus.alves.dados@gmail.com"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8.5" height="8.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10.5 5.5V2H2v8.5h3.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><span>Copiar e-mail</span></button>
+    </div>
+    <div class="actions">
+      <a class="btn btn-light" href="https://www.linkedin.com/in/matheushalves/" rel="noopener">LinkedIn <svg class="arr" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <a class="btn btn-ghost" href="https://github.com/matheushalves-dados" rel="noopener">GitHub <svg class="arr" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <a class="btn btn-ghost" href="cv.html">Currículo</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer dark">
+  <div class="wrap">
+    <p>© 2026 Matheus Alves · Analista de Dados, Rio de Janeiro</p>
+    <p class="foot-links"><a href="mailto:matheus.alves.dados@gmail.com">E-mail</a><a href="https://www.linkedin.com/in/matheushalves/" rel="noopener">LinkedIn</a><a href="https://github.com/matheushalves-dados" rel="noopener">GitHub</a><a href="cv.html">Currículo</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/data-shopping.js"></script>
+<script src="assets/js/home.js"></script>
+</body>
+</html>

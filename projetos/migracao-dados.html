@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modernização da plataforma de dados | Matheus Alves</title>
+<meta name="description" content="Case de engenharia de analytics: liderança técnica da migração de um ETL em SSIS para GCP, dbt e Databricks, com reconciliação, testes e custo como requisito.">
+<link rel="canonical" href="https://matheushalves-dados.github.io/projetos/migracao-dados.html">
+<meta name="theme-color" content="#0A0A0B">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Matheus Alves">
+<meta property="og:title" content="Modernização da plataforma de dados | Matheus Alves">
+<meta property="og:description" content="A migração de um ETL legado em SSIS para GCP, dbt e Databricks: decisões, plano e como garantir que nenhum número quebre.">
+<meta property="og:url" content="https://matheushalves-dados.github.io/projetos/migracao-dados.html">
+<meta property="og:image" content="https://matheushalves-dados.github.io/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%236A2CF5'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='27' font-weight='700' fill='%23fff' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header dark">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">MA</span>Matheus Alves<span class="brand-role">Analytics Engineer</span></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="../index.html#cases">Cases</a>
+      <a class="opt" href="../index.html#trajetoria">Trajetória</a>
+      <a class="opt" href="../index.html#competencias">Competências</a>
+      <a class="opt" href="../index.html#contato">Contato</a>
+    </nav>
+    <a class="btn btn-ghost header-cta" href="../cv.html">Currículo</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<section class="case-hero dark">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Você está em"><a href="../index.html">Início</a><span aria-hidden="true">/</span><a href="../index.html#cases">Cases</a><span aria-hidden="true">/</span><span aria-current="page">Plataforma de dados</span></nav>
+    <p class="case-label">Case 03 · Engenharia de dados</p>
+    <h1>Modernizando uma plataforma de dados sem parar a operação</h1>
+    <p class="lede">Liderança técnica da migração de um ETL legado em SSIS para uma arquitetura em GCP, dbt e Databricks: versionada, testada e mais barata de operar.</p>
+    <dl class="facts">
+      <div><dt>Meu papel</dt><dd>Liderança técnica da migração</dd></div>
+      <div><dt>Ferramentas</dt><dd>GCP, Databricks, dbt, SQL, Python</dd></div>
+      <div><dt>Meta de negócio</dt><dd>Cerca de R$ 500 mil de economia no próximo ano</dd></div>
+      <div><dt>Status</dt><dd>Em andamento, na Ancar</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="tldr" aria-label="Resumo do case">
+  <div class="wrap">
+    <div class="tldr-grid">
+      <div class="tldr-item"><h2>O problema</h2><p>Regra de negócio escondida em pacotes SSIS, sem versionamento nem testes, rodando em um servidor que custa caro mesmo parado.</p></div>
+      <div class="tldr-item"><h2>O que estou fazendo</h2><p>Reescrevendo a lógica em modelos dbt versionados e testados, com processamento sob demanda no Databricks sobre o GCP.</p></div>
+      <div class="tldr-item"><h2>Como medimos</h2><p>Custo mensal, horário de disponibilidade dos dados, incidentes e tempo para entregar um indicador novo.</p></div>
+    </div>
+    <p class="notice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>A arquitetura aqui é simplificada e não traz números internos. Este case descreve a abordagem e as decisões, não dados da empresa.</span></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2>Por que migrar</h2>
+      <p>ETLs construídos em SSIS ao longo de anos costumam ter os mesmos sintomas: regra de negócio escondida dentro de pacotes que só uma ou duas pessoas entendem, nenhum versionamento, nenhum teste automático e um servidor que custa caro mesmo quando está parado.</p>
+      <p>Para o negócio, isso aparece como atraso e desconfiança. Cada indicador novo leva semanas, e quando dois relatórios mostram números diferentes, ninguém sabe dizer qual está certo.</p>
+    </div>
+    <div class="prose">
+      <h2>O que muda</h2>
+      <p>A lógica sai dos pacotes e vai para modelos SQL em dbt, versionados no Git e revisados como código. Cada modelo tem testes e documentação gerada automaticamente, e dá para ver de onde vem cada coluna.</p>
+      <p>O processamento passa a rodar sob demanda no Databricks, sobre o GCP. Em vez de pagar por um servidor ligado o tempo todo, a empresa paga pelo que processa. É daí que vem boa parte da meta de economia.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" style="padding-top:96px;padding-bottom:96px" aria-labelledby="arch-t">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:48px">
+      <div><p class="eyebrow">Arquitetura</p><h2 id="arch-t">Antes e depois.</h2></div>
+      <p>As mesmas fontes, com a lógica saindo dos pacotes e indo para modelos testados.</p>
+    </div>
+    <div class="arch">
+      <div class="arch-row">
+        <span class="arch-tag">Antes</span>
+        <div class="arch-node"><b>Sistemas de origem</b><span>ERP, locação, planilhas</span></div>
+        <div class="arch-node"><b>Pacotes SSIS</b><span>Lógica dentro dos pacotes</span></div>
+        <div class="arch-node"><b>Banco relacional</b><span>Servidor dedicado</span></div>
+        <div class="arch-node"><b>Relatórios</b><span>Regras repetidas em cada um</span></div>
+      </div>
+      <div class="arch-row new">
+        <span class="arch-tag">Depois</span>
+        <div class="arch-node"><b>Sistemas de origem</b><span>Mesmas fontes</span></div>
+        <div class="arch-node is-new"><b>Ingestão no GCP</b><span>Cargas versionadas</span></div>
+        <div class="arch-node is-new"><b>Databricks + dbt</b><span>Camadas e modelos testados</span></div>
+        <div class="arch-node"><b>Power BI e áreas</b><span>Uma definição por indicador</span></div>
+      </div>
+      <p class="arch-note">Testes, documentação e linhagem automáticos em cada modelo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="dec-t">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Decisões</p><h2 id="dec-t">As escolhas que mais pesam.</h2></div>
+      <p>O maior risco de uma migração está em quebrar um número que alguém usa para decidir.</p>
+    </div>
+    <div class="decisions">
+      <div class="decision"><h3>Migrar por domínio, e não tudo de uma vez</h3><p>Cada área de negócio migra como um bloco completo, da origem ao painel. Assim, cada entrega já gera valor e o risco fica contido.</p></div>
+      <div class="decision"><h3>Reescrever em vez de traduzir</h3><p>Copiar pacote por pacote levaria os problemas antigos para a plataforma nova. A migração é a chance de revisar regra por regra e eliminar o que ninguém usa.</p></div>
+      <div class="decision"><h3>Rodar em paralelo e reconciliar</h3><p>O legado só é desligado depois que os números da plataforma nova batem com os antigos, ou depois que cada diferença é explicada e aprovada pela área dona do dado.</p></div>
+      <div class="decision"><h3>Custo como requisito de arquitetura</h3><p>Particionamento, processamento incremental e clusters que desligam sozinhos entram no desenho desde o início, e não como ajuste depois que a conta chega.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" aria-labelledby="plan-t">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Plano</p><h2 id="plan-t">Quatro etapas, do inventário ao desligamento.</h2></div>
+    </div>
+    <ol class="flow">
+      <li><p class="flow-tag">01 · inventário</p><h3>Mapear</h3><p>Pacotes, dependências e quem usa cada saída. Priorizar pelo impacto no negócio e pelo risco técnico.</p></li>
+      <li><p class="flow-tag">02 · fundação</p><h3>Padronizar</h3><p>Ambientes, CI, convenções de nomes e camadas no dbt. O padrão que todo modelo novo vai seguir.</p></li>
+      <li><p class="flow-tag">03 · migração</p><h3>Migrar por domínio</h3><p>Reescrever, testar, rodar em paralelo e reconciliar cada domínio com a área dona do dado.</p></li>
+      <li><p class="flow-tag">04 · desligamento</p><h3>Desligar e medir</h3><p>Desligar o legado, otimizar custos e medir o resultado contra a meta de economia.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2>Qualidade que não depende de alguém lembrar</h2>
+      <p>Cada modelo declara as próprias regras de qualidade. Se uma carga trouxer uma chave duplicada ou um valor fora do esperado, o pipeline para e avisa antes de o dado chegar ao painel.</p>
+      <p>É o mesmo princípio do painel de shopping centers: o indicador é calculado e testado uma vez, na camada de dados, e todo consumidor recebe o mesmo número.</p>
+    </div>
+    <div>
+      <p class="code-cap">models/marts/schema.yml</p>
+<pre class="code">models:
+  - name: <span class="k">fct_lojista_mensal</span>
+    description: Vendas, ABL e custo de ocupação por loja e mês.
+    columns:
+      - name: loja_mes_id
+        tests: [unique, not_null]
+      - name: abl_m2
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 1
+      - name: vendas
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0</pre>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" aria-labelledby="mes-t">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Como medimos o sucesso</p><h2 id="mes-t">Quatro indicadores, definidos antes de começar.</h2></div>
+      <p>Uma migração só termina quando os números mostram o ganho.</p>
+    </div>
+    <div class="measures">
+      <div class="measure"><p class="measure-dir">↓ menor é melhor</p><h3>Custo mensal da plataforma</h3><p>Quanto a empresa paga por mês para processar e armazenar dados. É onde aparece a meta de economia.</p></div>
+      <div class="measure"><p class="measure-dir">↓ mais cedo é melhor</p><h3>Horário de disponibilidade</h3><p>A que horas os dados do dia anterior ficam prontos para as áreas usarem.</p></div>
+      <div class="measure"><p class="measure-dir">↓ menor é melhor</p><h3>Incidentes de dados</h3><p>Quantas vezes um número errado ou atrasado chegou a um relatório.</p></div>
+      <div class="measure"><p class="measure-dir">↓ menor é melhor</p><h3>Tempo para um indicador novo</h3><p>Dias entre o pedido de um indicador e ele estar disponível, testado e documentado.</p></div>
+    </div>
+    <p style="margin-top:56px"><a class="link-arrow" href="shopping-performance.html">Ver o painel que esta base alimenta <svg class="arr" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+  </div>
+</section>
+
+<a class="next-case dark" href="shopping-performance.html">
+  <span class="wrap" style="display:block">
+    <span class="eyebrow">Próximo case · 01</span>
+    <strong>Painel de performance para uma rede de shopping centers <svg width="56" height="56" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></strong>
+  </span>
+</a>
+</main>
+
+<footer class="site-footer dark">
+  <div class="wrap">
+    <p>© 2026 Matheus Alves · Analista de Dados, Rio de Janeiro</p>
+    <p class="foot-links"><a href="mailto:matheus.alves.dados@gmail.com">E-mail</a><a href="https://www.linkedin.com/in/matheushalves/" rel="noopener">LinkedIn</a><a href="https://github.com/matheushalves-dados" rel="noopener">GitHub</a><a href="../cv.html">Currículo</a></p>
+  </div>
+</footer>
+</body>
+</html>

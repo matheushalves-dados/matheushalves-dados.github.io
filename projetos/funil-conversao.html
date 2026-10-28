@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funil de conversão de um produto digital | Matheus Alves</title>
+<meta name="description" content="Case de análise de funil com GA4, BigQuery e dbt: em que etapa um portal de conteúdo financeiro perde cadastros, por canal e por dispositivo.">
+<link rel="canonical" href="https://matheushalves-dados.github.io/projetos/funil-conversao.html">
+<meta name="theme-color" content="#0A0A0B">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Matheus Alves">
+<meta property="og:title" content="Funil de conversão de um produto digital | Matheus Alves">
+<meta property="og:description" content="GA4, BigQuery e dbt para descobrir em que etapa um portal de conteúdo financeiro perde cadastros.">
+<meta property="og:url" content="https://matheushalves-dados.github.io/projetos/funil-conversao.html">
+<meta property="og:image" content="https://matheushalves-dados.github.io/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%236A2CF5'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='27' font-weight='700' fill='%23fff' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header dark">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">MA</span>Matheus Alves<span class="brand-role">Analytics Engineer</span></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="../index.html#cases">Cases</a>
+      <a class="opt" href="../index.html#trajetoria">Trajetória</a>
+      <a class="opt" href="../index.html#competencias">Competências</a>
+      <a class="opt" href="../index.html#contato">Contato</a>
+    </nav>
+    <a class="btn btn-ghost header-cta" href="../cv.html">Currículo</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<section class="case-hero dark">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Você está em"><a href="../index.html">Início</a><span aria-hidden="true">/</span><a href="../index.html#cases">Cases</a><span aria-hidden="true">/</span><span aria-current="page">Funil de conversão</span></nav>
+    <p class="case-label">Case 02 · Produto digital</p>
+    <h1>Onde um portal de conteúdo financeiro perde seus cadastros</h1>
+    <p class="lede">Um funil do primeiro acesso ao cadastro concluído no parceiro, com recortes por canal e por dispositivo, para mostrar exatamente em que etapa o dinheiro fica na mesa.</p>
+    <dl class="facts">
+      <div><dt>Meu papel</dt><dd>Instrumentação, modelagem e análise</dd></div>
+      <div><dt>Ferramentas</dt><dd>GA4, BigQuery, dbt, SQL, Looker Studio</dd></div>
+      <div><dt>Para quem</dt><dd>Produto, marketing e conteúdo</dd></div>
+      <div><dt>Contexto</dt><dd>Trabalho que fiz na iDinheiro</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="tldr" aria-label="Resumo do case">
+  <div class="wrap">
+    <div class="tldr-grid">
+      <div class="tldr-item"><h2>O problema</h2><p>Cada time olhava a sua parte do funil, e ninguém via a cadeia inteira. Quando os cadastros caíam, as explicações vinham sem número.</p></div>
+      <div class="tldr-item"><h2>O que eu fiz</h2><p>Plano de eventos no GA4, eventos brutos no BigQuery e uma tabela por sessão em dbt, cruzada com os cadastros confirmados pelos parceiros.</p></div>
+      <div class="tldr-item"><h2>O que o painel responde</h2><p>Qual etapa atacar primeiro, em qual canal e em qual dispositivo, e quantos cadastros cada página deixa de gerar.</p></div>
+    </div>
+    <p class="notice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>Os números são <strong>sintéticos</strong>, gerados para demonstração, e os títulos de páginas são exemplos. A abordagem é a mesma que usei na migração para o GA4 e na integração dos eventos ao BigQuery. O painel foi recriado em HTML; no trabalho, usei Power BI e Looker Studio.</span></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2>O problema</h2>
+      <p>Em um portal que vive de indicar produtos financeiros, a receita depende de uma cadeia longa: a pessoa chega por uma busca, lê o conteúdo, clica no comparador, vai para o site do parceiro e conclui o cadastro lá. Cada time olhava a sua parte: SEO olhava sessões, conteúdo olhava leitura, comercial olhava cadastros.</p>
+      <p>Ninguém via a cadeia inteira. Por isso, quando os cadastros caíam, cada time tinha uma explicação diferente, e nenhuma vinha com número.</p>
+    </div>
+    <div class="prose">
+      <h2>Como abordei</h2>
+      <h3>Instrumentar antes de analisar</h3>
+      <p>Na migração para o GA4, defini um plano de eventos para cada etapa do funil, com nomes e parâmetros padronizados. Sem isso, qualquer análise seria uma estimativa.</p>
+      <h3>Levar o dado bruto para o warehouse</h3>
+      <p>Os eventos vão para o BigQuery e são tratados em dbt, com histórico preservado. Isso permite cruzar o comportamento no site com os cadastros confirmados pelos parceiros, algo que a interface do GA4 não faz.</p>
+      <h3>Recortar até achar a causa</h3>
+      <p>A maior perda percentual está entre ler e clicar, o que é esperado em um portal de conteúdo. A perda que mais vale atacar é outra: a passagem do comparador para o cadastro no celular, onde a taxa fica muito abaixo da do computador. A média do funil esconde isso; o recorte por dispositivo mostra.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="painel" aria-labelledby="dash-t">
+  <div class="wrap">
+    <div class="dash">
+      <div class="dash-head">
+        <div>
+          <p class="dash-kicker">Painel interativo · dados sintéticos</p>
+          <h2 class="dash-title" id="dash-t">Funil de cadastro</h2>
+          <p class="dash-period">12 semanas, de 3 de agosto a 25 de outubro de 2026</p>
+        </div>
+        <div class="dash-filters" role="group" aria-label="Filtros do painel">
+          <label class="field">Canal<select id="f-canal"><option value="todos">Todos os canais</option></select></label>
+          <label class="field">Dispositivo<select id="f-disp"><option value="todos">Todos</option><option value="Mobile">Celular</option><option value="Desktop">Computador</option></select></label>
+        </div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="dash-body">
+        <section class="tile s7" aria-labelledby="t-funnel">
+          <h3 id="t-funnel">Funil do acesso ao cadastro</h3>
+          <p class="tile-sub">Em vermelho, a maior perda depois do clique no comparador</p>
+          <div id="funnel" class="funnel"></div>
+        </section>
+        <section class="tile s5" aria-labelledby="t-canal">
+          <h3 id="t-canal">Conversão por canal</h3>
+          <p class="tile-sub">Cadastros concluídos divididos pelas sessões</p>
+          <div id="ch-canal"></div>
+          <details class="tview" id="tv-canal"></details>
+        </section>
+        <section class="tile s7" aria-labelledby="t-semana">
+          <h3 id="t-semana">Cadastros por semana</h3>
+          <p class="tile-sub">Comparados à meta do trimestre</p>
+          <div id="ch-semana"></div>
+          <details class="tview" id="tv-semana"></details>
+        </section>
+        <aside class="tile s5 reading" aria-labelledby="t-read">
+          <h3 id="t-read">Leitura do analista</h3>
+          <p class="tile-sub">Muda conforme o recorte selecionado</p>
+          <ol id="insights"></ol>
+        </aside>
+        <section class="tile" aria-labelledby="t-pages">
+          <h3 id="t-pages">Páginas com mais cadastros a recuperar</h3>
+          <p class="tile-sub">Cadastros extras se cada página convertesse na média do portal</p>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Página</th><th class="r">Sessões</th><th class="r">Conversão</th><th class="r">Cadastros a recuperar</th></tr></thead>
+              <tbody id="tbl-pages"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+      <p class="dash-foot"><span>Fonte: fct_sessao_funil, modelo dbt sobre os eventos do GA4 no BigQuery</span><span>Dados sintéticos, gerados no navegador</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2>A modelagem por trás</h2>
+      <p>O GA4 exporta eventos brutos para o BigQuery, um evento por linha e com parâmetros aninhados. Em dbt, transformo isso em uma tabela por sessão com a etapa máxima atingida, o canal e o dispositivo. A partir dela, qualquer funil sai com um <code>group by</code>.</p>
+      <p>Foi esse tipo de transformação que reduziu o processamento diário de relatórios de <strong>cerca de 2 horas para 30 minutos</strong> na iDinheiro: o trabalho pesado acontece uma vez no warehouse, e não a cada atualização de painel.</p>
+    </div>
+    <div>
+      <p class="code-cap">models/marts/fct_sessao_funil.sql</p>
+<pre class="code"><span class="k">with</span> eventos <span class="k">as</span> (
+    <span class="k">select</span>
+        user_pseudo_id,
+        (<span class="k">select</span> value.int_value <span class="k">from</span> unnest(event_params)
+          <span class="k">where</span> key = <span class="s">'ga_session_id'</span>)   <span class="k">as</span> sessao_id,
+        event_name,
+        traffic_source.medium           <span class="k">as</span> canal,
+        device.category                 <span class="k">as</span> dispositivo
+    <span class="k">from</span> {{ ref(<span class="s">'stg_ga4_eventos'</span>) }}
+)
+<span class="k">select</span>
+    sessao_id, canal, dispositivo,
+    max(<span class="k">case</span> event_name
+        <span class="k">when</span> <span class="s">'cadastro_concluido'</span>  <span class="k">then</span> 4
+        <span class="k">when</span> <span class="s">'cadastro_iniciado'</span>   <span class="k">then</span> 3
+        <span class="k">when</span> <span class="s">'clique_comparador'</span>   <span class="k">then</span> 2
+        <span class="k">when</span> <span class="s">'scroll_50'</span>           <span class="k">then</span> 1
+        <span class="k">else</span> 0 <span class="k">end</span>)                 <span class="k">as</span> etapa_maxima
+<span class="k">from</span> eventos
+<span class="k">group by</span> 1, 2, 3</pre>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <details class="defs">
+      <summary>Dicionário de métricas</summary>
+      <dl>
+        <dt>Sessão</dt><dd>Visita identificada pelo <code>ga_session_id</code> do GA4. Uma pessoa pode ter várias sessões.</dd>
+        <dt>Leram o conteúdo</dt><dd>Sessões que chegaram a 50% da página (evento <code>scroll_50</code>).</dd>
+        <dt>Clicaram no comparador</dt><dd>Sessões com pelo menos um clique em oferta ou comparador.</dd>
+        <dt>Iniciaram cadastro</dt><dd>Sessões que chegaram ao formulário do parceiro, confirmadas pelo retorno do parceiro.</dd>
+        <dt>Taxa de conversão</dt><dd>Cadastros concluídos divididos pelo total de sessões do recorte.</dd>
+        <dt>Cadastros a recuperar</dt><dd>Sessões da página multiplicadas pela diferença entre a conversão média do portal e a conversão da página.</dd>
+      </dl>
+    </details>
+    <details class="defs">
+      <summary>O que eu faria em seguida</summary>
+      <ul>
+        <li>Rodar um teste A/B com um formulário mais curto no celular, medindo cadastros concluídos e não só cliques.</li>
+        <li>Criar um alerta automático para quando a passagem do comparador ao cadastro cair mais de 10% em uma semana.</li>
+        <li>Levar a receita por cadastro de cada parceiro para o modelo, para priorizar páginas por receita e não só por volume.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<a class="next-case dark" href="migracao-dados.html">
+  <span class="wrap" style="display:block">
+    <span class="eyebrow">Próximo case · 03</span>
+    <strong>Modernizando uma plataforma de dados sem parar a operação <svg width="56" height="56" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></strong>
+  </span>
+</a>
+</main>
+
+<footer class="site-footer dark">
+  <div class="wrap">
+    <p>© 2026 Matheus Alves · Analista de Dados, Rio de Janeiro</p>
+    <p class="foot-links"><a href="mailto:matheus.alves.dados@gmail.com">E-mail</a><a href="https://www.linkedin.com/in/matheushalves/" rel="noopener">LinkedIn</a><a href="https://github.com/matheushalves-dados" rel="noopener">GitHub</a><a href="../cv.html">Currículo</a></p>
+  </div>
+</footer>
+
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/dash-funil.js"></script>
+</body>
+</html>
