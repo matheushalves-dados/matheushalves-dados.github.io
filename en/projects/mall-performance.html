@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopping Center Performance Dashboard | Matheus Alves</title>
+<meta name="description" content="Case study and interactive dashboard: sales, sales per m², occupancy, delinquency and at-risk tenants across a shopping center network. SQL, dbt, BigQuery and Power BI.">
+<link rel="canonical" href="https://matheushalves-dados.github.io/en/projects/mall-performance.html">
+<link rel="alternate" hreflang="pt-BR" href="https://matheushalves-dados.github.io/projetos/shopping-performance.html">
+<link rel="alternate" hreflang="en" href="https://matheushalves-dados.github.io/en/projects/mall-performance.html">
+<meta name="theme-color" content="#0A0A0B">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Matheus Alves">
+<meta property="og:title" content="Shopping Center Performance Dashboard | Matheus Alves">
+<meta property="og:description" content="Sales, occupancy, delinquency and at-risk tenants in an interactive dashboard, with the dbt model behind it.">
+<meta property="og:url" content="https://matheushalves-dados.github.io/en/projects/mall-performance.html">
+<meta property="og:image" content="https://matheushalves-dados.github.io/assets/img/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%236A2CF5'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='27' font-weight='700' fill='%23fff' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header dark">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">MA</span>Matheus Alves<span class="brand-role">Analytics Engineer</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html#experience">Experience</a>
+      <a class="opt" href="../index.html#cases">Case studies</a>
+      <a class="opt" href="../index.html#skills">Skills</a>
+      <a class="opt" href="../index.html#contact">Contact</a>
+    </nav>
+    <nav class="lang" aria-label="Language"><a href="../../projetos/shopping-performance.html" hreflang="pt-BR" lang="pt-BR">PT</a><a href="mall-performance.html" hreflang="en" lang="en" aria-current="true">EN</a></nav>
+    <a class="btn btn-ghost header-cta" href="../cv.html"><span class="lbl-long">Résumé</span><span class="lbl-short">CV</span></a>
+  </div>
+</header>
+
+<main id="content">
+
+<section class="case-hero dark">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="You are here"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="../index.html#cases">Case studies</a><span aria-hidden="true">/</span><span aria-current="page">Shopping centers</span></nav>
+    <p class="case-label">Case 01 · Retail</p>
+    <h1>Performance dashboard for a shopping center network</h1>
+    <p class="lede">One screen that answers the three questions leadership asks every Monday: are sales growing, where are they growing, and which tenants need attention before it becomes a problem.</p>
+    <dl class="facts">
+      <div><dt>My role</dt><dd>Analysis, modeling and visualization</dd></div>
+      <div><dt>Tools</dt><dd>SQL, dbt, BigQuery, Power BI</dd></div>
+      <div><dt>Audience</dt><dd>Leadership, leasing and operations</dd></div>
+      <div><dt>Context</dt><dd>The industry I work in today, at Ancar</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="tldr" aria-label="Case summary">
+  <div class="wrap">
+    <div class="tldr-grid">
+      <div class="tldr-item"><h2>The problem</h2><p>Sales, leases and foot traffic live in separate systems, and a tenant’s decline only shows up in the quarterly report.</p></div>
+      <div class="tldr-item"><h2>What I did</h2><p>A dimensional model in dbt with the industry’s KPIs and automated tests, plus a dashboard that crosses sales decline with occupancy cost.</p></div>
+      <div class="tldr-item"><h2>What it answers</h2><p>Whether sales are growing, in which categories, and which stores need a conversation with the leasing team now.</p></div>
+    </div>
+    <p class="notice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>All numbers in this dashboard are <strong>synthetic</strong>, generated for demonstration, and the malls are fictional. The structure, KPIs and business questions reflect the kind of work I do in this industry; no company data was used. The dashboard was rebuilt in HTML to run in the browser. At work, I build this kind of dashboard in Power BI.</span></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2>The problem</h2>
+      <p>At a shopping center operator, the information exists but lives in silos: tenant-reported sales in one system, leases and billing in another, foot traffic in a third. Each team builds its own spreadsheet, and Monday’s meeting starts with an argument about which number is right.</p>
+      <p>The cost isn’t just time. When a tenant’s decline only appears in the end-of-quarter report, the conversation is already about delinquency or a store closing, not about how to help them sell more.</p>
+    </div>
+    <div class="prose">
+      <h2>How I approached it</h2>
+      <h3>Start from the decision, not the data</h3>
+      <p>Before opening any table, I listed the decisions the dashboard must support: tenant mix reviews, lease renegotiations and campaign planning. Anything that didn’t help those decisions was left out.</p>
+      <h3>KPIs the industry already uses</h3>
+      <p>Sales per m², occupancy cost and delinquency are the language of mall operators. Using these KPIs, each with a single documented definition, ends the debate about which number is right.</p>
+      <h3>From alert to action</h3>
+      <p>The at-risk stores table crosses sales decline with high occupancy cost. A single signal may be seasonal; both together point to a tenant at real risk of leaving.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="painel" aria-labelledby="dash-t">
+  <div class="wrap">
+    <div class="dash">
+      <div class="dash-head">
+        <div>
+          <p class="dash-kicker">Interactive dashboard · synthetic data</p>
+          <h2 class="dash-title" id="dash-t">Network performance</h2>
+          <p class="dash-period">Nov ’25 to Oct ’26, compared with the prior 12 months</p>
+        </div>
+        <div class="dash-filters" role="group" aria-label="Dashboard filters">
+          <label class="field">Mall<select id="f-shop"><option value="todos">All malls</option></select></label>
+        </div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="dash-body">
+        <section class="tile s8" aria-labelledby="t-sales">
+          <h3 id="t-sales">Monthly tenant sales</h3>
+          <p class="tile-sub">Hover or use the arrow keys to see each month</p>
+          <div id="ch-sales"></div>
+          <details class="tview" id="tv-sales"></details>
+        </section>
+        <section class="tile s4" aria-labelledby="t-seg">
+          <h3 id="t-seg">Sales change by category</h3>
+          <p class="tile-sub">Last 12 months vs the prior 12</p>
+          <div id="ch-seg"></div>
+          <details class="tview" id="tv-seg"></details>
+        </section>
+        <section class="tile s6" aria-labelledby="t-vis">
+          <h3 id="t-vis">Monthly foot traffic</h3>
+          <p class="tile-sub">Latest month highlighted</p>
+          <div id="ch-vis"></div>
+          <details class="tview" id="tv-vis"></details>
+        </section>
+        <aside class="tile s6 reading" aria-labelledby="t-read">
+          <h3 id="t-read">Analyst’s read</h3>
+          <p class="tile-sub">Updates with the selected mall</p>
+          <ol id="insights"></ol>
+        </aside>
+        <section class="tile" aria-labelledby="t-stores">
+          <h3 id="t-stores">Stores that need attention</h3>
+          <p class="tile-sub" id="stores-count"></p>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Store</th><th id="th-shop">Mall</th><th>Category</th><th class="r">Sales (3 months)</th><th class="r">vs prior year</th><th class="r">Occupancy cost</th><th>Signal</th></tr></thead>
+              <tbody id="tbl-stores"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+      <p class="dash-foot"><span>Source: fct_lojista_mensal, a dbt model on BigQuery</span><span>Synthetic data, generated in the browser</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2>The model behind it</h2>
+      <p>The dashboard reads from a simple dimensional model built in dbt on BigQuery: a monthly fact table per store, plus store, mall and calendar dimensions.</p>
+      <p>Two choices make the difference. First, KPIs are calculated in the data layer, not inside the dashboard, so Power BI, a spreadsheet or an API all show exactly the same number. Second, automated dbt tests check for unique keys, non-null leasable area and non-negative sales, so a bad load is stopped before it reaches leadership.</p>
+    </div>
+    <div>
+      <p class="code-cap">models/marts/fct_lojista_mensal.sql</p>
+<pre class="code"><span class="k">with</span> vendas <span class="k">as</span> (
+    <span class="k">select</span> loja_id,
+           date_trunc(data_venda, month) <span class="k">as</span> mes,
+           sum(valor_venda) <span class="k">as</span> vendas
+    <span class="k">from</span> {{ ref(<span class="s">'stg_vendas_lojistas'</span>) }}
+    <span class="k">group by</span> 1, 2
+)
+<span class="k">select</span>
+    v.loja_id, v.mes, l.shopping_id, l.segmento,
+    v.vendas,
+    safe_divide(v.vendas, l.abl_m2)        <span class="k">as</span> venda_m2,
+    safe_divide(c.custo_ocupacao, v.vendas) <span class="k">as</span> custo_ocupacao_pct,
+    safe_divide(v.vendas, lag(v.vendas, 12)
+        <span class="k">over</span> (<span class="k">partition by</span> v.loja_id <span class="k">order by</span> v.mes)) - 1
+                                            <span class="k">as</span> var_ano_anterior
+<span class="k">from</span> vendas v
+<span class="k">join</span> {{ ref(<span class="s">'dim_lojas'</span>) }} l <span class="k">using</span> (loja_id)
+<span class="k">left join</span> {{ ref(<span class="s">'int_custo_ocupacao'</span>) }} c
+    <span class="k">using</span> (loja_id, mes)</pre>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <details class="defs">
+      <summary>Metric dictionary</summary>
+      <dl>
+        <dt>Sales per m²</dt><dd>Tenant-reported monthly sales divided by occupied GLA (gross leasable area). Lets you compare stores and malls of different sizes.</dd>
+        <dt>Occupancy cost</dt><dd>Rent, condo fees and marketing fund divided by the store’s sales. Above 15–16%, a tenant’s operation tends to be under pressure.</dd>
+        <dt>Occupancy rate</dt><dd>Leased GLA divided by the mall’s total GLA on the last day of the month.</dd>
+        <dt>Delinquency</dt><dd>Amounts more than 30 days overdue divided by the amount billed in the month.</dd>
+        <dt>Sales per visitor</dt><dd>Total sales divided by foot traffic. Separates growth from more visitors from growth from higher spend per visit.</dd>
+      </dl>
+    </details>
+    <details class="defs">
+      <summary>What I would do next</summary>
+      <ul>
+        <li>Automatically send the list of at-risk stores to each mall’s leasing manager every Monday.</li>
+        <li>Build a simple tenant churn-risk model using sales history, occupancy cost and late payments.</li>
+        <li>Measure the effect of renegotiations: did stores with revised leases start growing again?</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<a class="next-case dark" href="conversion-funnel.html">
+  <span class="wrap" style="display:block">
+    <span class="eyebrow">Next case · 02</span>
+    <strong>Where a personal finance portal loses its sign-ups <svg width="56" height="56" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></strong>
+  </span>
+</a>
+</main>
+
+<footer class="site-footer dark">
+  <div class="wrap">
+    <p>© 2026 Matheus Alves · Analytics Engineer, Rio de Janeiro, Brazil</p>
+    <p class="foot-links"><a href="mailto:matheus.alves.dados@gmail.com">Email</a><a href="https://www.linkedin.com/in/matheushalves/" rel="noopener">LinkedIn</a><a href="https://github.com/matheushalves-dados" rel="noopener">GitHub</a><a href="../cv.html">Résumé</a><a href="../../projetos/shopping-performance.html" hreflang="pt-BR" lang="pt-BR">Português</a></p>
+  </div>
+</footer>
+
+<script src="../../assets/js/charts.js"></script>
+<script src="../../assets/js/data-shopping.js"></script>
+<script src="../../assets/js/dash-shopping.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 /* Página inicial: prévia do painel, prévia do case 1, cópia do e-mail e destaque da seção no menu. */
 (function () {
-  const { fmt } = Charts;
+  const { fmt, t } = Charts;
   const sum = (a) => a.reduce((x, y) => x + y, 0);
 
   const box = document.getElementById('hero-chart');
@@ -16,10 +16,10 @@
       document.getElementById('hero-occ').textContent = fmt.dec(d.occ[11]) + '%';
       Charts.line(box, {
         labels: d.months, format: fmt.brl, height: 230,
-        label: 'Vendas mensais do shopping selecionado nos últimos 12 meses e nos 12 meses anteriores',
+        label: t('Vendas mensais do shopping selecionado nos últimos 12 meses e nos 12 meses anteriores', 'Monthly sales for the selected mall, last 12 months vs prior 12 months'),
         series: [
-          { name: 'Últimos 12 meses', values: d.cur, color: '--viz-focus', area: true },
-          { name: '12 meses anteriores', values: d.prev, color: '--viz-context', dashed: true },
+          { name: t('Últimos 12 meses', 'Last 12 months'), values: d.cur, color: '--viz-focus', area: true },
+          { name: t('12 meses anteriores', 'Prior 12 months'), values: d.prev, color: '--viz-context', dashed: true },
         ],
       });
     };
@@ -39,26 +39,25 @@
     Charts.hbar(c1, {
       labels: segs.map((s) => s.n), values: segs.map((s) => s.v), format: (v) => fmt.delta(v),
       rowHeight: 32, valueWidth: 56, colorFn: (v) => (v >= 0 ? '--viz-focus' : '--viz-neg'),
-      label: 'Variação de vendas por segmento, últimos 12 meses contra os 12 anteriores',
+      label: t('Variação de vendas por segmento, últimos 12 meses contra os 12 anteriores', 'Sales change by category, last 12 months vs prior 12 months'),
     });
   }
 
   // copia o e-mail; se o navegador bloquear a área de transferência, seleciona o endereço para Ctrl+C
   document.querySelectorAll('[data-copy]').forEach((b) => {
     const lbl = b.querySelector('span'), orig = lbl.textContent;
-    const say = (t) => { lbl.textContent = t; setTimeout(() => { lbl.textContent = orig; }, 2400); };
+    const say = (msg) => { lbl.textContent = msg; setTimeout(() => { lbl.textContent = orig; }, 2400); };
     b.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(b.dataset.copy);
-        say('E-mail copiado');
+        say(t('E-mail copiado', 'Email copied'));
       } catch (e) {
-        const mail = document.querySelector('.mail');
         const range = document.createRange();
-        range.selectNodeContents(mail);
+        range.selectNodeContents(document.querySelector('.mail'));
         const s = window.getSelection();
         s.removeAllRanges();
         s.addRange(range);
-        say('Selecionado: use Ctrl+C');
+        say(t('Selecionado: use Ctrl+C', 'Selected: press Ctrl+C'));
       }
     });
   });
@@ -75,6 +74,6 @@
         });
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
-    targets.forEach((t) => io.observe(t));
+    targets.forEach((tg) => io.observe(tg));
   }
 })();

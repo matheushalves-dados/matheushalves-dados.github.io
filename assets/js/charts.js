@@ -2,6 +2,10 @@
    Cores e superfícies vêm das variáveis CSS do contêiner, então o mesmo gráfico funciona em seções claras e escuras. */
 (function () {
   const NS = 'http://www.w3.org/2000/svg';
+  // idioma vem do atributo lang da página: pt-BR (padrão) ou en
+  const EN = (document.documentElement.lang || '').toLowerCase().startsWith('en');
+  const LOC = EN ? 'en-US' : 'pt-BR';
+  const t = (pt, en) => (EN ? en : pt);
 
   function tokens(node) {
     const cs = getComputedStyle(node);
@@ -27,22 +31,28 @@
   }
   function compact(v) {
     const a = Math.abs(v);
-    const f = (x) => x.toLocaleString('pt-BR', { maximumFractionDigits: 1 });
-    if (a >= 1e9) return f(v / 1e9) + ' bi';
-    if (a >= 1e6) return f(v / 1e6) + ' mi';
-    if (a >= 1e3) return f(v / 1e3) + ' mil';
-    return Math.round(v).toLocaleString('pt-BR');
+    const f = (x) => x.toLocaleString(LOC, { maximumFractionDigits: 1 });
+    if (a >= 1e9) return f(v / 1e9) + t(' bi', 'B');
+    if (a >= 1e6) return f(v / 1e6) + t(' mi', 'M');
+    if (a >= 1e3) return f(v / 1e3) + t(' mil', 'K');
+    return Math.round(v).toLocaleString(LOC);
   }
+  const dec = (v, d = 1) => v.toLocaleString(LOC, { minimumFractionDigits: d, maximumFractionDigits: d });
+  const sign = (r) => (r > 0 ? '+' : r < 0 ? '−' : '');
   const fmt = {
     brl: (v) => 'R$ ' + compact(v),
-    brlFull: (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR'),
-    int: (v) => Math.round(v).toLocaleString('pt-BR'),
-    dec: (v, d = 1) => v.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d }),
+    brlFull: (v) => 'R$ ' + Math.round(v).toLocaleString(LOC),
+    int: (v) => Math.round(v).toLocaleString(LOC),
+    dec,
     compact,
-    pct: (v, d = 1) => (v * 100).toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d }) + '%',
+    pct: (v, d = 1) => dec(v * 100, d) + '%',
     delta: (v, d = 1) => {
       const r = Math.round(v * 100 * 10 ** d) / 10 ** d;
-      return (r > 0 ? '+' : r < 0 ? '−' : '') + Math.abs(r).toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d }) + '%';
+      return sign(r) + dec(Math.abs(r), d) + '%';
+    },
+    pp: (v) => {
+      const r = Math.round(v * 10) / 10;
+      return sign(r) + dec(Math.abs(r)) + t(' p.p.', ' pp');
     },
   };
   const textWidth = (s, px) => String(s).length * px;
@@ -347,12 +357,12 @@
 
   /* Tabela equivalente ao gráfico, dentro de um <details> */
   function table(target, head, rows) {
-    const t = typeof target === 'string' ? document.querySelector(target) : target;
-    if (!t) return;
-    t.replaceChildren();
+    const box = typeof target === 'string' ? document.querySelector(target) : target;
+    if (!box) return;
+    box.replaceChildren();
     const s = document.createElement('summary');
-    s.textContent = 'Ver dados em tabela';
-    t.appendChild(s);
+    s.textContent = t('Ver dados em tabela', 'View data as a table');
+    box.appendChild(s);
     const wrap = document.createElement('div');
     wrap.className = 'table-wrap';
     const tb = document.createElement('table');
@@ -362,7 +372,7 @@
     const body = tb.createTBody();
     rows.forEach((r) => { const tr = body.insertRow(); r.forEach((c, i) => { const td = tr.insertCell(); td.textContent = c; if (i) td.className = 'r'; }); });
     wrap.appendChild(tb);
-    t.appendChild(wrap);
+    box.appendChild(wrap);
   }
 
   /* Gerador determinístico para dados sintéticos reproduzíveis */
@@ -375,5 +385,5 @@
     };
   }
 
-  window.Charts = { line, hbar, vbar, spark, kpis, table, fmt, compact, rng };
+  window.Charts = { line, hbar, vbar, spark, kpis, table, fmt, compact, rng, EN, t };
 })();

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversion Funnel for a Digital Product | Matheus Alves</title>
+<meta name="description" content="Funnel analysis case study with GA4, BigQuery and dbt: where a personal finance portal loses sign-ups, by channel and by device.">
+<link rel="canonical" href="https://matheushalves-dados.github.io/en/projects/conversion-funnel.html">
+<link rel="alternate" hreflang="pt-BR" href="https://matheushalves-dados.github.io/projetos/funil-conversao.html">
+<link rel="alternate" hreflang="en" href="https://matheushalves-dados.github.io/en/projects/conversion-funnel.html">
+<meta name="theme-color" content="#0A0A0B">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Matheus Alves">
+<meta property="og:title" content="Conversion Funnel for a Digital Product | Matheus Alves">
+<meta property="og:description" content="GA4, BigQuery and dbt to find the step where a personal finance portal loses its sign-ups.">
+<meta property="og:url" content="https://matheushalves-dados.github.io/en/projects/conversion-funnel.html">
+<meta property="og:image" content="https://matheushalves-dados.github.io/assets/img/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%236A2CF5'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='27' font-weight='700' fill='%23fff' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header dark">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">MA</span>Matheus Alves<span class="brand-role">Analytics Engineer</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html#experience">Experience</a>
+      <a class="opt" href="../index.html#cases">Case studies</a>
+      <a class="opt" href="../index.html#skills">Skills</a>
+      <a class="opt" href="../index.html#contact">Contact</a>
+    </nav>
+    <nav class="lang" aria-label="Language"><a href="../../projetos/funil-conversao.html" hreflang="pt-BR" lang="pt-BR">PT</a><a href="conversion-funnel.html" hreflang="en" lang="en" aria-current="true">EN</a></nav>
+    <a class="btn btn-ghost header-cta" href="../cv.html"><span class="lbl-long">Résumé</span><span class="lbl-short">CV</span></a>
+  </div>
+</header>
+
+<main id="content">
+
+<section class="case-hero dark">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="You are here"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="../index.html#cases">Case studies</a><span aria-hidden="true">/</span><span aria-current="page">Conversion funnel</span></nav>
+    <p class="case-label">Case 02 · Digital product</p>
+    <h1>Where a personal finance portal loses its sign-ups</h1>
+    <p class="lede">A funnel from first visit to completed partner sign-up, split by channel and device, to show exactly which step leaves money on the table.</p>
+    <dl class="facts">
+      <div><dt>My role</dt><dd>Instrumentation, modeling and analysis</dd></div>
+      <div><dt>Tools</dt><dd>GA4, BigQuery, dbt, SQL, Looker Studio</dd></div>
+      <div><dt>Audience</dt><dd>Product, marketing and content</dd></div>
+      <div><dt>Context</dt><dd>Work I did at iDinheiro</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="tldr" aria-label="Case summary">
+  <div class="wrap">
+    <div class="tldr-grid">
+      <div class="tldr-item"><h2>The problem</h2><p>Each team looked at its own slice of the funnel, and nobody saw the whole chain. When sign-ups dropped, the explanations came without numbers.</p></div>
+      <div class="tldr-item"><h2>What I did</h2><p>An event plan in GA4, raw events in BigQuery and a session-level table in dbt, joined with sign-ups confirmed by partners.</p></div>
+      <div class="tldr-item"><h2>What it answers</h2><p>Which step to fix first, on which channel and device, and how many sign-ups each page leaves behind.</p></div>
+    </div>
+    <p class="notice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>The numbers are <strong>synthetic</strong>, generated for demonstration, and the page titles are examples. The approach is the same one I used in the GA4 migration and the BigQuery event integration. The dashboard was rebuilt in HTML; at work, I used Power BI and Looker Studio.</span></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2>The problem</h2>
+      <p>A portal that earns money by recommending financial products depends on a long chain: someone arrives from a search, reads the content, clicks the comparison tool, goes to the partner’s site and completes the sign-up there. Each team watched its own part: SEO watched sessions, content watched reading, sales watched sign-ups.</p>
+      <p>Nobody saw the whole chain. So when sign-ups fell, every team had a different explanation, and none came with a number.</p>
+    </div>
+    <div class="prose">
+      <h2>How I approached it</h2>
+      <h3>Instrument before analyzing</h3>
+      <p>During the GA4 migration, I defined an event plan for each funnel step, with standardized names and parameters. Without it, any analysis would be a guess.</p>
+      <h3>Bring raw data into the warehouse</h3>
+      <p>Events land in BigQuery and are modeled in dbt with full history. That makes it possible to join on-site behavior with partner-confirmed sign-ups, something the GA4 interface can’t do.</p>
+      <h3>Slice until you find the cause</h3>
+      <p>The biggest percentage drop is between reading and clicking, which is expected for a content portal. The drop most worth fixing is another one: going from the comparison tool to sign-up on mobile, where the rate is far below desktop. The funnel average hides it; the device split reveals it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="painel" aria-labelledby="dash-t">
+  <div class="wrap">
+    <div class="dash">
+      <div class="dash-head">
+        <div>
+          <p class="dash-kicker">Interactive dashboard · synthetic data</p>
+          <h2 class="dash-title" id="dash-t">Sign-up funnel</h2>
+          <p class="dash-period">12 weeks, from August 3 to October 25, 2026</p>
+        </div>
+        <div class="dash-filters" role="group" aria-label="Dashboard filters">
+          <label class="field">Channel<select id="f-canal"><option value="todos">All channels</option></select></label>
+          <label class="field">Device<select id="f-disp"><option value="todos">All</option><option value="Mobile">Mobile</option><option value="Desktop">Desktop</option></select></label>
+        </div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="dash-body">
+        <section class="tile s7" aria-labelledby="t-funnel">
+          <h3 id="t-funnel">Funnel from visit to sign-up</h3>
+          <p class="tile-sub">In red, the biggest drop after the comparison click</p>
+          <div id="funnel" class="funnel"></div>
+        </section>
+        <section class="tile s5" aria-labelledby="t-canal">
+          <h3 id="t-canal">Conversion by channel</h3>
+          <p class="tile-sub">Completed sign-ups divided by sessions</p>
+          <div id="ch-canal"></div>
+          <details class="tview" id="tv-canal"></details>
+        </section>
+        <section class="tile s7" aria-labelledby="t-semana">
+          <h3 id="t-semana">Weekly sign-ups</h3>
+          <p class="tile-sub">Compared with the quarterly target</p>
+          <div id="ch-semana"></div>
+          <details class="tview" id="tv-semana"></details>
+        </section>
+        <aside class="tile s5 reading" aria-labelledby="t-read">
+          <h3 id="t-read">Analyst’s read</h3>
+          <p class="tile-sub">Updates with the selected filters</p>
+          <ol id="insights"></ol>
+        </aside>
+        <section class="tile" aria-labelledby="t-pages">
+          <h3 id="t-pages">Pages with the most sign-ups to recover</h3>
+          <p class="tile-sub">Extra sign-ups if each page converted at the portal average</p>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Page</th><th class="r">Sessions</th><th class="r">Conversion</th><th class="r">Sign-ups to recover</th></tr></thead>
+              <tbody id="tbl-pages"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+      <p class="dash-foot"><span>Source: fct_sessao_funil, a dbt model on GA4 events in BigQuery</span><span>Synthetic data, generated in the browser</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2>The model behind it</h2>
+      <p>GA4 exports raw events to BigQuery, one event per row with nested parameters. In dbt, I turn that into one row per session with the furthest step reached, the channel and the device. From there, any funnel is a single <code>group by</code>.</p>
+      <p>This kind of transformation is what cut daily report processing from <strong>about 2 hours to 30 minutes</strong> at iDinheiro: the heavy lifting happens once in the warehouse, not on every dashboard refresh.</p>
+    </div>
+    <div>
+      <p class="code-cap">models/marts/fct_sessao_funil.sql</p>
+<pre class="code"><span class="k">with</span> eventos <span class="k">as</span> (
+    <span class="k">select</span>
+        user_pseudo_id,
+        (<span class="k">select</span> value.int_value <span class="k">from</span> unnest(event_params)
+          <span class="k">where</span> key = <span class="s">'ga_session_id'</span>)   <span class="k">as</span> sessao_id,
+        event_name,
+        traffic_source.medium           <span class="k">as</span> canal,
+        device.category                 <span class="k">as</span> dispositivo
+    <span class="k">from</span> {{ ref(<span class="s">'stg_ga4_eventos'</span>) }}
+)
+<span class="k">select</span>
+    sessao_id, canal, dispositivo,
+    max(<span class="k">case</span> event_name
+        <span class="k">when</span> <span class="s">'cadastro_concluido'</span>  <span class="k">then</span> 4
+        <span class="k">when</span> <span class="s">'cadastro_iniciado'</span>   <span class="k">then</span> 3
+        <span class="k">when</span> <span class="s">'clique_comparador'</span>   <span class="k">then</span> 2
+        <span class="k">when</span> <span class="s">'scroll_50'</span>           <span class="k">then</span> 1
+        <span class="k">else</span> 0 <span class="k">end</span>)                 <span class="k">as</span> etapa_maxima
+<span class="k">from</span> eventos
+<span class="k">group by</span> 1, 2, 3</pre>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <details class="defs">
+      <summary>Metric dictionary</summary>
+      <dl>
+        <dt>Session</dt><dd>A visit identified by GA4’s <code>ga_session_id</code>. One person can have several sessions.</dd>
+        <dt>Read the content</dt><dd>Sessions that reached 50% of the page (<code>scroll_50</code> event).</dd>
+        <dt>Clicked the comparison tool</dt><dd>Sessions with at least one click on an offer or on the comparison tool.</dd>
+        <dt>Started sign-up</dt><dd>Sessions that reached the partner’s form, confirmed by the partner’s callback.</dd>
+        <dt>Conversion rate</dt><dd>Completed sign-ups divided by total sessions in the slice.</dd>
+        <dt>Sign-ups to recover</dt><dd>Page sessions multiplied by the gap between the portal’s average conversion and the page’s conversion.</dd>
+      </dl>
+    </details>
+    <details class="defs">
+      <summary>What I would do next</summary>
+      <ul>
+        <li>Run an A/B test with a shorter mobile form, measuring completed sign-ups, not just clicks.</li>
+        <li>Set up an automatic alert for when the comparison-to-sign-up step drops more than 10% in a week.</li>
+        <li>Bring each partner’s revenue per sign-up into the model, to prioritize pages by revenue rather than volume.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<a class="next-case dark" href="data-platform.html">
+  <span class="wrap" style="display:block">
+    <span class="eyebrow">Next case · 03</span>
+    <strong>Modernizing a data platform without stopping operations <svg width="56" height="56" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></strong>
+  </span>
+</a>
+</main>
+
+<footer class="site-footer dark">
+  <div class="wrap">
+    <p>© 2026 Matheus Alves · Analytics Engineer, Rio de Janeiro, Brazil</p>
+    <p class="foot-links"><a href="mailto:matheus.alves.dados@gmail.com">Email</a><a href="https://www.linkedin.com/in/matheushalves/" rel="noopener">LinkedIn</a><a href="https://github.com/matheushalves-dados" rel="noopener">GitHub</a><a href="../cv.html">Résumé</a><a href="../../projetos/funil-conversao.html" hreflang="pt-BR" lang="pt-BR">Português</a></p>
+  </div>
+</footer>
+
+<script src="../../assets/js/charts.js"></script>
+<script src="../../assets/js/dash-funil.js"></script>
+</body>
+</html>

@@ -21,13 +21,16 @@ Os painéis usam **dados sintéticos**, gerados de forma determinística no nave
 - Paleta dos gráficos validada para daltonismo e contraste nas seções claras e escuras.
 - Responsivo do celular ao desktop, com currículo pronto para salvar em PDF (`cv.html`).
 - Metadados para LinkedIn e buscadores: Open Graph, imagem de prévia, dados estruturados, sitemap.
+- Versão em inglês em `/en/`, com seletor PT/EN no topo e `hreflang` entre as páginas equivalentes.
+- Foto opcional: salve `assets/img/foto.jpg` (quadrada, mínimo 400×400) e ela aparece no topo da home; sem o arquivo, o espaço some.
 
 ## Estrutura
 
 ```
-index.html                    página inicial
+index.html                    página inicial (português)
 projetos/                     um arquivo por case
 cv.html                       currículo (botão "Salvar em PDF")
+en/                           versão em inglês: index, projects/, cv.html
 404.html                      página de erro do GitHub Pages
 assets/css/style.css          estilos e tokens de cor
 assets/js/charts.js           gráficos em SVG, indicadores e tabelas
@@ -35,7 +38,7 @@ assets/js/data-shopping.js    dados sintéticos de shopping centers
 assets/js/dash-shopping.js    lógica do painel de shopping
 assets/js/dash-funil.js       dados e lógica do painel de funil
 assets/js/home.js             prévias interativas da página inicial
-assets/img/og.png             imagem de prévia para LinkedIn (1200×630)
+assets/img/og.png, og-en.png  imagens de prévia para LinkedIn (1200×630), PT e EN
 robots.txt, sitemap.xml       indexação
 ```
 

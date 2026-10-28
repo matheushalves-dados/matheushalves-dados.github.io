@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://matheushalves-dados.github.io/</loc><lastmod>2026-10-27</lastmod></url>
-  <url><loc>https://matheushalves-dados.github.io/projetos/shopping-performance.html</loc><lastmod>2026-10-27</lastmod></url>
-  <url><loc>https://matheushalves-dados.github.io/projetos/funil-conversao.html</loc><lastmod>2026-10-27</lastmod></url>
-  <url><loc>https://matheushalves-dados.github.io/projetos/migracao-dados.html</loc><lastmod>2026-10-27</lastmod></url>
-  <url><loc>https://matheushalves-dados.github.io/cv.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/projetos/shopping-performance.html</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/projetos/funil-conversao.html</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/projetos/migracao-dados.html</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/cv.html</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/en/</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/en/projects/mall-performance.html</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/en/projects/conversion-funnel.html</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/en/projects/data-platform.html</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://matheushalves-dados.github.io/en/cv.html</loc><lastmod>2026-10-28</lastmod></url>
 </urlset>
